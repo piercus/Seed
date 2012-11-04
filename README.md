@@ -6,10 +6,10 @@ Elegant inheritance, attributes and events, both for client-side and server-side
 Seed.js is a part of the fjs project.
 Seed.js is a abstract JavaScript Constructor, that would fullfill the following requirements :
 
-*   **inheritance**, `Seed.extend` and the `"+method"` convention help you inherit fast and easily, see [Extend with Seed.js](blob/master/Extendable.md)
-*   **attributes**, with easy and flexible `options` keyword, see [Manage attributes with 'options'](blob/master/options.md)
-*   **events** and **subscriptions**, to avoid object persistance due to dirty event subscriptions see [Use events](blob/master/Events.md)
-*   **sub**, build a sub objects of a parent see [What is it sub ?](blob/master/Events.md)
+*   **inheritance**, `Seed.extend` and the `"+method"` convention help you inherit fast and easily, see [Extend with Seed.js](Seed/blob/master/Extendable.md)
+*   **attributes**, with easy and flexible `options` keyword, see [Manage attributes with 'options'](Seed/blob/master/options.md)
+*   **events** and **subscriptions**, to avoid object persistance due to dirty event subscriptions see [Use events](Seed/blob/master/Events.md)
+*   **sub**, build a sub objects of a parent see [What is it sub ?](Seed/blob/master/Events.md)
 
 ## Installation
 
@@ -34,7 +34,7 @@ see [sandjs](http://github.com/fjs/sandjs) for more informations on sand.js.
       /* code */
     });
 
-see [How to require Seed.js](blob/master/How-To-Require-Seed.md) for more ways to require Seed.js
+see [How to require Seed.js](Seed/blob/master/How-to-require-Seed.md) for more ways to require Seed.js
 
 ### Extend your own Constructors 
 
@@ -106,37 +106,10 @@ see [How to require Seed.js](blob/master/How-To-Require-Seed.md) for more ways t
 ## More infos/usages
 
 Seed.js is a package of 4 little Tools :
-*    **Extendable**, (in Seed/Extendable), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](blob/master/Extendable.md)
-*    **Eventable**, (in Seed/Eventable), fire and subscribe event properly, see [Use events](blob/master/Eventable.md)
-*    **options**, (in Seed/Seed), elegant attributes set. see [Manage attributes with 'options'](blob/master/options.md)
-*    **sub**, (in Seed/Seed), elegant attributes set [What is sub ?](blob/master/sub.md)
-
-
-
-## More usages to require Seed.js
-
-    var S = require("Seed");
-    
-### Inside a sandjs module
-
-    sand.define(["Seed"], function(r){
-      var S = r.Seed;
-      /* code */
-    });
-
-### With sandjs outside scope
-
-    var S = sand.require("Seed");
-    /* code */
-
-### Server-side with node
-
-    var S = require("Seed");
-    /* code */
-
-### With requirejs 
-
-(Soon)
+*    **Extendable**, (in Seed/Extendable), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](Seed/blob/master/Extendable.md)
+*    **Eventable**, (in Seed/Eventable), fire and subscribe event properly, see [Use events](Seed/blob/master/Eventable.md)
+*    **options**, (in Seed/Seed), elegant attributes set. see [Manage attributes with 'options'](Seed/blob/master/options.md)
+*    **sub**, (in Seed/Seed), elegant attributes set [What is sub ?](Seed/blob/master/sub.md)
 
 ## Tests
 
