@@ -218,85 +218,9 @@ sand.define("Seed/tests/Extendable", ["vows","assert", "Seed/Extendable"], funct
         },
       }
     },
-    
-    "cstr extend" : {
-    
-      "topic" : function() {
-        var A = Ex.extend({
-          "cstr:+new" : function(instance) {
-            this.instances[instance.id] = instance;
-            instance.setReady(true);
-          },
-          
-          "cstr:instances" : {},
-          
-          "+init" : function(o) {
-            o.id && (this.id = o.id);
-          },
-          
-          "cstr:find" : function(id) {
-            return this.instances[id];
-          },
-          
-          "setReady" : function () {
-            this.ready = true;
-          }
-        });
-        
-        return A;
-      },
-      "make the -ed instance" : function(A) {
-        var insts = [];
-        for(var i in A.instances) if(A.instances.hasOwnProperty(i)){
-          insts.push(A.instances[i]);
-        }
-        assert.equal(insts.length, 0);
-        assert.isUndefined(A.find(45));
-      },
-      "add an instance to A" : {
-        "topic" : function(A) {
-          var a = new A({
-            id : 45
-          });
-
-          this.callback(null, a, A);
-        },
-        "a is findable" : function(err, a, A) {
-          assert.isTrue(a.ready);
-          assert.equal(A.find(45), a);
-        },
-        "one level more" : { 
-          "topic" : function(a, A) {
-
-            var B = A.extend({
-              "cstr:+find" : function(id) {
-                this.lastSearched = id;
-              },
-              "cstr:instances" : []
-            });
-
-            this.callback(null, B, a, A);
-          },
-          
-          "should +ed on cstr fn" : function(err, B, a, A) {
-          
-            assert.isUndefined(B.find(45));
-            assert.equal(B.lastSearched, 45);
-            
-            assert.strictEqual(A.find(45), a);
-            
-            var b = new B({id: 28});
-            assert.strictEqual(B.find(28), b);
-          }
-        }
-      }
-      
-    },
     exceptions : {
       "when define +method and -method" : {
-        "topic" : function(){
-          
-        }
+        "topic" : "pending"
       }
     }
   });

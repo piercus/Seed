@@ -135,27 +135,6 @@ sand.define("Seed/Extendable", [], function(r) {
   };
   
   /**
-  * Split Configuration between instance extension and constructor extension, with the cstr: convention
-  * 
-  *
-  * @private
-  * @param {Object} obj instance/cstr configuration object
-  * @returns {Object} result {instance : {}, cstr : {}} 
-  */
-  
-  var splitExtend = function(obj) {
-    var testStr = "cstr:", l = testStr.length, res = {instance : {}, cstr : {}};
-    for(var i in obj) if(obj.hasOwnProperty(i)){
-      if(i.slice(0,l) === testStr){
-        res.cstr[i.slice(l)] = obj[i];
-      } else {
-        res.instance[i] = obj[i];
-      }
-    }
-    return res;
-  }
-  
-  /**
   * Singleton extend with +/- convention
   *
   * @private
@@ -190,11 +169,19 @@ sand.define("Seed/Extendable", [], function(r) {
   
   Extendable.extend = function(obj) {
 
-    var extObj = splitExtend(obj),
-        C      = extendCstr(this, extObj.cstr);
+    var C = function(o) {
+      C["new"].call(C, this, arguments);
+    };
     
-    C.prototype = extend(new this(false), pm(this.prototype, extObj.instance));
+    //copy constructor ownProperty (i.e. extend and new)
+    var attrs = clone(this);
 
+    for (var i in attrs) if(attrs.hasOwnProperty(i)) {
+      C[i] = attrs[i];
+    }
+    
+    C.prototype = extend(new this(false), pm(this.prototype, obj));
+    
     return C;
   };
 
