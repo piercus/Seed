@@ -4,12 +4,12 @@ Elegant inheritance, attributes and events, both for client-side and server-side
 ## Introduction
 
 Seed.js is a part of the fjs project.
-Seed.js is a abstract JavaScript Constructor, that would fullfill the following requirements :
+Seed.js is an abstract JavaScript Constructor, that would fullfill the following requirements :
 
 *   **inheritance**, `Seed.extend` and the `"+method"` convention help you inherit fast and easily, see [Extend with Seed.js](Seed/blob/master/Extendable.md)
 *   **attributes**, with easy and flexible `options` keyword, see [Manage attributes with 'options'](Seed/blob/master/options.md)
 *   **events** and **subscriptions**, to avoid object persistance due to dirty event subscriptions see [Use events](Seed/blob/master/Events.md)
-*   **sub**, build a sub objects of a parent see [What is it sub ?](Seed/blob/master/Events.md)
+*   **sub**, build a sub object of a parent one see [What is it sub ?](Seed/blob/master/Events.md)
 
 ## Installation
 
