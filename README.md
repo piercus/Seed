@@ -22,14 +22,17 @@ in your script add
     require("Seed");
 
 ### Client-side
+
     <script src="path/to/Seed.merged.js">
 or
+
     <script src="path/to/Seed.min.js">
+
 ## Basic Usage
 You can use sandjs synhtax to write both client and server-side code.
 see [sandjs](http://github.com/fjs/sandjs) for more informations on sand.js.
 
-    var S = sand.require("Seed", function(r){
+    var S = sand.require("Seed/Seed", function(r){
       var S = r.Seed;
       /* code */
     });

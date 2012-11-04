@@ -1,5 +1,5 @@
 sand.define("Seed/Extendable", [], function(r) {
-  
+
   var clone = function(o) { // clones an object (only lvl 1, see hardClone)
         var res = {};
         for (var i in o) if (o.hasOwnProperty(i)) res[i] = o[i];
@@ -197,7 +197,7 @@ sand.define("Seed/Extendable", [], function(r) {
 
     return C;
   };
-    
+
   return Extendable;
   
 });

@@ -1,19 +1,14 @@
 ## How to require Seed ?
 ### Inside a sandjs module
 
-    sand.define(["Seed"], function(r){
+    sand.define("myModule", ["Seed/Seed"], function(r){
       var S = r.Seed;
       /* code */
     });
 
 ### With sandjs outside scope
-
-    var S = sand.require("Seed");
-    /* code */
-
-### Server-side with node
-
-    var S = require("Seed");
+    require("sandjs");
+    var S = sand.require("Seed/Seed");
     /* code */
 
 ### With requirejs 
