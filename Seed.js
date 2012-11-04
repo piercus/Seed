@@ -58,7 +58,7 @@ sand.define("Seed/Seed", ["Seed/Eventable", "Array/send"], function(r) {
       if (typeof(C) !== "function") {
         throw new Error("C is not a valid constructor");
       }
-      var c = new C(this._subParams(o));
+      var c = new C(this.subParams(o));
       this._subs.push(c);
       return c;
     },
