@@ -15,7 +15,7 @@ Seed.js is a abstract JavaScript Constructor, that would fullfill the following 
 
 ### With NPM
 
-    $ npm install Seedjs
+    $ npm install seed-js
 
 in your script add
 

@@ -1,5 +1,5 @@
 {
-  "name": "Seedjs",
+  "name": "seed-js",
   "version": "0.0.1",
   "description": "Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.",
   "main": "Seed.js",
