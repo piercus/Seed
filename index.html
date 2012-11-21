@@ -1,0 +1,210 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Seed by piercus</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>Seed</h1>
+        <p>Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.</p>
+
+        <p class="view"><a href="https://github.com/piercus/Seed">View the Project on GitHub <small>piercus/Seed</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/piercus/Seed/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/piercus/Seed/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/piercus/Seed">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Seed.js</h1>
+
+<p>Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.</p>
+
+<h2>Introduction</h2>
+
+<p>Seed.js is a part of the fjs project.
+Seed.js is an abstract JavaScript Constructor, that would fullfill the following requirements :</p>
+
+<ul>
+<li>  <strong>inheritance</strong>, <code>Seed.extend</code> and the <code>"+method"</code> convention help you inherit fast and easily, see <a href="Seed/blob/master/Extendable.md">Extend with Seed.js</a>
+</li>
+<li>  <strong>attributes</strong>, with easy and flexible <code>options</code> keyword, see <a href="Seed/blob/master/options.md">Manage attributes with 'options'</a>
+</li>
+<li>  <strong>events</strong> and <strong>subscriptions</strong>, to avoid object persistance due to dirty event subscriptions see <a href="Seed/blob/master/Events.md">Use events</a>
+</li>
+<li>  <strong>sub</strong>, build a sub object of a parent one see <a href="Seed/blob/master/Events.md">What is it sub ?</a>
+</li>
+</ul><h2>Installation</h2>
+
+<h3>With NPM</h3>
+
+<pre><code>$ npm install seed-js
+</code></pre>
+
+<p>in your script add</p>
+
+<pre><code>require("Seed");
+</code></pre>
+
+<h3>Client-side</h3>
+
+<pre><code>&lt;script src="path/to/Seed.merged.js"&gt;
+</code></pre>
+
+<p>or</p>
+
+<pre><code>&lt;script src="path/to/Seed.min.js"&gt;
+</code></pre>
+
+<h2>Basic Usage</h2>
+
+<p>You can use sandjs synhtax to write both client and server-side code.
+see <a href="http://github.com/fjs/sandjs">sandjs</a> for more informations on sand.js.</p>
+
+<pre><code>var S = sand.require("Seed/Seed", function(r){
+  var S = r.Seed;
+  /* code */
+});
+</code></pre>
+
+<p>see <a href="Seed/blob/master/How-to-require-Seed.md">How to require Seed.js</a> for more ways to require Seed.js</p>
+
+<h3>Extend your own Constructors</h3>
+
+<pre><code>var Fruit = S.extend({
+  options : {
+    // by default the fruit is Tasty
+    isTasty : true,
+    //and no one owns it
+    owner : null
+  },
+
+  // i like to taste any fruit
+  taste : function() {
+    console.log("I like to taste a fruit");
+  },
+
+  dump : function() {
+    return {
+      objectType :  "a fruit"
+    }
+  }
+});
+
+var Banana = Fruit.extend({
+  // by default the banana is owned by a banana eater and is yellow
+  "+options" : {
+    owner : "banana eater",
+    color : "yellow"
+  },
+
+  // but the taste of the banana depends if it tasty
+  "+taste" : function() {
+    console.log(this.isTasty ? "GREAT!" : "beurk!");
+  },
+
+  "+dump" : function() {
+    return {
+      color : this.color
+    }
+  }
+});
+</code></pre>
+
+<h3>Instanciate them</h3>
+
+<pre><code>var oldBanana = new Banana({
+  isTasty : false,
+  color : "black",
+  owner : "me"
+});
+
+// options are set as attributes in the instance
+oldBanana.isTasty 
+//=&gt; false
+
+// +taste in Banana is executed after taste in Fruit
+oldBanana.taste();
+// I like to test fruits
+// beurk!
+
+var favoriteBanana = new r.Banana();
+
+favoriteBanana.taste(); 
+// I like to test fruits
+// GREAT!
+
+favoriteBanana.dump();
+//=&gt; { color : "yellow", objectType : "a fruit"}
+</code></pre>
+
+<h2>More infos/usages</h2>
+
+<p>Seed.js is a package of 4 little Tools :</p>
+
+<ul>
+<li>   <strong>Extendable</strong>, (in Seed/Extendable), extend objects protoypes gracefully with +/- convention see <a href="Seed/blob/master/Extendable.md">Extend with Seed.js</a>
+</li>
+<li>   <strong>Eventable</strong>, (in Seed/Eventable), fire and subscribe event properly, see <a href="Seed/blob/master/Eventable.md">Use events</a>
+</li>
+<li>   <strong>options</strong>, (in Seed/Seed), elegant attributes set. see <a href="Seed/blob/master/options.md">Manage attributes with 'options'</a>
+</li>
+<li>   <strong>sub</strong>, (in Seed/Seed), elegant attributes set <a href="Seed/blob/master/sub.md">What is sub ?</a>
+</li>
+</ul><h2>Tests</h2>
+
+<p>run tests</p>
+
+<pre><code>npm test
+</code></pre>
+
+<p>test uses sandcli and run on server-side with vowsjs
+<a href="http://github.com/piercus/sandcli">sandcli</a> provides a test command</p>
+
+<h2>Documentation</h2>
+
+<p>By now documentation is inside the code and uses JSDoc synthax.</p>
+
+<h2>Contribute</h2>
+
+<p>Add an issue if you find bugs or please</p>
+
+<ul>
+<li>  Fork me</li>
+<li>  Add your tests</li>
+<li>  Make your contribution</li>
+<li>  Pass all the tests </li>
+<li>  Add a pull request</li>
+</ul>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/piercus">piercus</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+              <script type="text/javascript">
+            var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+            document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+          </script>
+          <script type="text/javascript">
+            try {
+              var pageTracker = _gat._getTracker("UA-36483881-1");
+            pageTracker._trackPageview();
+            } catch(err) {}
+          </script>
+
+  </body>
+</html>
