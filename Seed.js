@@ -24,7 +24,7 @@ sand.define("Seed/Seed", ["Seed/Eventable", "Array/send"], function(r) {
       
       this._subs = [];
       
-      this._o = o;
+      this._o = o || {};
       this.setOptions();
     },
     
