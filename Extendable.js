@@ -119,7 +119,7 @@ sand.define("Seed/Extendable", [], function(r) {
             old    = oldObj[key] || nullFn,
             extFn  = extendObj[i];
         
-        switch(i[0]){
+        switch(i.charAt(0)){
           case "+": 
             resObj[key] = mergeFns(old, extFn);
             break;
