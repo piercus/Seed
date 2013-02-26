@@ -62,7 +62,7 @@ sand.define("Seed/tests/Seed", ["vows","assert", "Seed/Seed"], function(r) {
         assert.equal(color.nbSell, 1);        
       }
     },
-    "options can be schema if there are followed by $key" : {
+    "options can be schema if there are defined with '$' : '$key'" : {
       topic : function(){
         var Color = S.extend({
           options : {

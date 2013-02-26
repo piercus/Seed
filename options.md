@@ -27,12 +27,27 @@ but here you override the options key of yot superclass, so combine it with the 
       }
     });
 
-#### Use JSONSchema in options
+#### Use JSONSchema in options 
+If your option key start with a $, the value must be a JSONSchema Object.
 See [json-schema.org] to more infos on JSONSchema, we use [http://geraintluff.github.com/tv4/] for validation.
 
-    var C3 = C.extend({
+    var C2 = C.extend({
       "+options" : {
-        color : { pattern : "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", default : "#FFFFFF" },
-        isOk : { default : true, type : "boolean" },
+        "$color" : { pattern : "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", default : "#FFFFFF" },
+        "$isOk" : { default : true, type : "boolean" },
       }
     }); 
+
+This style of coding may also be useful to automatic-form generation. 
+
+If you want to catch the validations errors, you can use errCb :
+
+		var C2 = C.extend({
+		  "+options" : {
+		    "$color" : { pattern : "^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$", default : "#FFFFFF" },
+		    "$isOk" : { default : true, type : "boolean" },
+		    errCb : function(errors){
+			    console.log("validations errors are : ",errors)
+		    }
+		  }
+		}); 

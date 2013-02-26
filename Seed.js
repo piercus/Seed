@@ -57,14 +57,18 @@ sand.define("Seed/Seed", ["Seed/Eventable", "Array/send", "Seed/lib/tv4"], funct
               if(tv4.validate(this._o[key], schema)){
                 this[key] = this._o[key];
               } else {
-                schemaErrors.push(tv4.error);
+                schemaErrors.push(tv4.error); 
+                schema.default && (this[key] = schema.default);
               }
             }
           }
         }
       }
-      if(schemaErrors.length > 0 && this._o.errCb){
-        this._o.errCb(schemaErrors);        
+      
+      this._o.errCb && (this.errCb = this._o.errCb);
+      
+      if(schemaErrors.length > 0 && this.errCb){
+        this.errCb(schemaErrors);        
       } else if(schemaErrors.length > 0){
         throw Error(schemaErrors);
       }
