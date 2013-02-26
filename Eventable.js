@@ -3,7 +3,6 @@ sand.define("Seed/Eventable", [
     "Array/remove",
     "Array/map",
     "String/capitalize"
-    
   ], function(r) {
   
   /**

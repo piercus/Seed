@@ -1,4 +1,6 @@
-sand.define("Seed/Seed", ["Seed/Eventable", "Array/send"], function(r) {
+sand.define("Seed/Seed", ["Seed/Eventable", "Array/send", "Seed/lib/tv4"], function(r) {
+  
+  var tv4 = r.tv4;
   
   /**
   * @class Seed
@@ -39,11 +41,32 @@ sand.define("Seed/Seed", ["Seed/Eventable", "Array/send"], function(r) {
     */
     
     setOptions : function() {
+      var schemaErrors = [];
+      
       if (this.options) {
         for (var i in this.options) if (this.options.hasOwnProperty(i)) {
-          if (typeof(this._o[i]) === "undefined") this[i] = this.options[i];
-          else this[i] = this._o[i];
+          
+          if(i.charAt(0) !== "$"){ //normal {key : defaultValue} option definition
+            if (typeof(this._o[i]) === "undefined") this[i] = this.options[i];
+            else this[i] = this._o[i];            
+          } else {  // json schema option definition 
+            var key = i.substr(1),
+                schema = this.options[i];            
+            if(typeof(this._o[key]) === "undefined" && schema.default) this[i] = schema.default;
+            else if(typeof(this._o[key]) !== "undefined"){
+              if(tv4.validate(this._o[key], schema)){
+                this[key] = this._o[key];
+              } else {
+                schemaErrors.push(tv4.error);
+              }
+            }
+          }
         }
+      }
+      if(schemaErrors.length > 0 && this._o.errCb){
+        this._o.errCb(schemaErrors);        
+      } else if(schemaErrors.length > 0){
+        throw Error(schemaErrors);
       }
     },
     
