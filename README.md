@@ -137,5 +137,7 @@ Add an issue if you find bugs or please
 *   Pass all the tests 
 *   Add a pull request
 
+## Authors
 
+Pierre Colle, Sam Ton-That, Cyril Agosta
 
