@@ -126,6 +126,12 @@ run tests
 
     npm test
 
+## Build
+
+Build
+
+    npm run-script minify
+
 ## Documentation
 
 By now documentation is inside the code and uses JSDoc synthax.
