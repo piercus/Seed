@@ -19,25 +19,31 @@ Seed.js is an abstract JavaScript Constructor, that would fullfill the following
 
 in your script add
 
-    require("Seed");
+    require("seed-js");
 
 ### Client-side
 
-    <script src="path/to/Seed.merged.js">
-or
+#### If you use requirejs
 
     <script src="path/to/Seed.min.js">
 
-## Basic Usage
-You can use sandjs synhtax to write both client and server-side code.
-see [sandjs](http://github.com/fjs/sandjs) for more informations on sand.js.
+then :
 
-    var S = sand.require("Seed/Seed", function(r){
-      var S = r.Seed;
+    require("seed-js/Seed", function(S){
       /* code */
     });
 
-see [How to require Seed.js](Seed/blob/master/How-to-require-Seed.md) for more ways to require Seed.js
+#### If you do not use requirejs
+
+Be careful, Seed is then a global variable, [Why do i need to avoid global variables ?](http://yuiblog.com/blog/2006/06/01/global-domination/)
+
+    <script src="path/to/Seed.standalone.min.js">
+
+then :
+
+    var S = Seed;
+
+## Basic Usage
 
 ### Extend your own Constructors 
 
@@ -109,19 +115,16 @@ see [How to require Seed.js](Seed/blob/master/How-to-require-Seed.md) for more w
 ## More infos/usages
 
 Seed.js is a package of 4 little Tools :
-*    **Extendable**, (in Seed/Extendable), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](Seed/blob/master/Extendable.md)
-*    **Eventable**, (in Seed/Eventable), fire and subscribe event properly, see [Use events](Seed/blob/master/Eventable.md)
-*    **options**, (in Seed/Seed), elegant attributes set. see [Manage attributes with 'options'](Seed/blob/master/options.md)
-*    **sub**, (in Seed/Seed), elegant attributes set [What is sub ?](Seed/blob/master/sub.md)
+*    **Extendable**, (in seed-js/Extendable.js), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](Seed/blob/master/Extendable.md)
+*    **Eventable**, (in seed-js/Eventable.js), fire and subscribe event properly, see [Use events](Seed/blob/master/Eventable.md)
+*    **options**, (in seed-js/Seed.js), elegant attributes set. see [Manage attributes with 'options'](Seed/blob/master/options.md)
+*    **sub**, (in seed-js/Seed.js), elegant attributes set [What is sub ?](Seed/blob/master/sub.md)
 
 ## Tests
 
 run tests
 
     npm test
-
-test uses sandcli and run on server-side with vowsjs
-[sandcli](http://github.com/piercus/sandcli) provides a test command
 
 ## Documentation
 

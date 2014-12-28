@@ -1,7 +1,4 @@
-sand.define("Seed/tests/Extendable", ["vows","assert", "Seed/Extendable"], function(r) {
-  var v = r.vows,
-      assert = r.assert,
-      Ex = r.Extendable;
+define("seed-js/tests/Extendable", ["vows","assert", "seed-js/Extendable"], function(v, assert, Ex) {
   
   return v.describe("Extendable").addBatch({
     "Basic extend" : {

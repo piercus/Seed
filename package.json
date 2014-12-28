@@ -1,21 +1,23 @@
 {
   "name": "seed-js",
-  "version": "0.0.2",
+  "version": "0.0.4",
   "description": "Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.",
   "main": "Seed.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test"    : "sand test"
+    "test": "node tests/run.js"
   },
   "dependencies": {
-    "sandjs" : "git://github.com/piercus/sandjs.git",
-    "String" : "git://github.com/piercus/String.git",
-    "Array" : "git://github.com/piercus/Array.git"
+    "string-nocomplex": "git://github.com/piercus/String.nocomplex.git",
+    "array-nocomplex": "git://github.com/piercus/Array.nocomplex.git",
+    "bower" : "bower",  
+    "requirejs": "~2.1.10"
   },
   "devDependencies": {
-    "sandcli" : ">= 0.0.0"
+    "sandcli": ">= 0.0.0",
+    "vows": "~0.7.0"
   },
   "repository": {
     "type": "git",
@@ -34,6 +36,19 @@
     "sandjs",
     "fjs"
   ],
-  "author": "fjs",
-  "license": "MIT"
+  "author": {
+    "name": "Pierre Colle"
+  },
+  "license": "MIT",
+  "readmeFilename": "README.md",
+  "bugs": {
+    "url": "https://github.com/piercus/Seed/issues"
+  },
+  "maintainers": [
+    {
+      "name": "piercus",
+      "email": "piercus@gmail.com"
+    }
+  ],
+  "homepage": "http://piercus.github.io/Seed/"
 }

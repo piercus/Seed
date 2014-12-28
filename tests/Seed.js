@@ -1,7 +1,4 @@
-sand.define("Seed/tests/Seed", ["vows","assert", "Seed/Seed"], function(r) {
-  var v = r.vows,
-      assert = r.assert,
-      S = r.Seed;
+define("seed-js/tests/Seed", ["vows","assert", "seed-js/Seed"], function(v, assert, S) {
   
   return v.describe("Seed").addBatch({
     "2 models" : {

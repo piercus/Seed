@@ -1,4 +1,4 @@
-sand.define("Seed/Extendable", [], function(r) {
+define("seed-js/Extendable", function() {
 
   var clone = function(o) { // clones an object (only lvl 1, see hardClone)
         var res = {};
@@ -26,7 +26,7 @@ sand.define("Seed/Extendable", [], function(r) {
    *  A.prototype.some_random_method();
    *  add();
    * }
-   * @export Seed/Extendable
+   * @export seed-js/Extendable
    */
   var Extendable = function() {};
   

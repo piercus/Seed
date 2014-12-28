@@ -1,16 +1,16 @@
-sand.define("Seed/Eventable", [
-    "Seed/Extendable",
-    "Array/remove",
-    "Array/map",
-    "String/capitalize"
-  ], function(r) {
+define("seed-js/Eventable", [
+    "seed-js/Extendable",
+    "Array.nocomplex/remove",
+     "Array.nocomplex/map",
+     "String.nocomplex/capitalize"
+  ], function(Extendable) {
   
   /**
   * For publishing events
-  * @export Seed/Eventable 
+  * @export seed-js/Eventable 
   */
   
-  return r.Extendable.extend({
+  return Extendable.extend({
     
     init : function() {
       this._events = {};

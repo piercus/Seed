@@ -1,7 +1,6 @@
-sand.define("Seed/Seed", ["Seed/Eventable", "Array/send", "Seed/lib/tv4"], function(r) {
+define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex/send"], function(Eventable, tv4) {
   
-  var tv4 = r.tv4;
-  
+
   /**
   * @class Seed
   * @param {object} o configuration object
@@ -9,7 +8,7 @@ sand.define("Seed/Seed", ["Seed/Eventable", "Array/send", "Seed/lib/tv4"], funct
   * 
   */
   
-  return r.Eventable.extend({
+  return Eventable.extend({
   
     /**
     * init instance attributes
