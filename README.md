@@ -3,7 +3,7 @@ Elegant inheritance, attributes and events, both for client-side and server-side
 
 ## Introduction
 
-Seed.js is a part of the fjs project.
+Seed.js was a part of the fjs project.
 Seed.js is an abstract JavaScript Constructor, that would fullfill the following requirements :
 
 *   **inheritance**, `Seed.extend` and the `"+method"` convention help you inherit fast and easily, see [Extend with Seed.js](Seed/blob/master/Extendable.md)
@@ -35,11 +35,9 @@ then :
 
 #### If you do not use requirejs
 
-Be careful, Seed is then a global variable, [Why do i need to avoid global variables ?](http://yuiblog.com/blog/2006/06/01/global-domination/)
-
     <script src="path/to/Seed.standalone.min.js">
 
-then :
+then Seed is a global variable :
 
     var S = Seed;
 
@@ -115,10 +113,10 @@ then :
 ## More infos/usages
 
 Seed.js is a package of 4 little Tools :
-*    **Extendable**, (in seed-js/Extendable.js), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](Seed/blob/master/Extendable.md)
-*    **Eventable**, (in seed-js/Eventable.js), fire and subscribe event properly, see [Use events](Seed/blob/master/Eventable.md)
-*    **options**, (in seed-js/Seed.js), elegant attributes set. see [Manage attributes with 'options'](Seed/blob/master/options.md)
-*    **sub**, (in seed-js/Seed.js), elegant attributes set [What is sub ?](Seed/blob/master/sub.md)
+*    **Extendable**, (in seed-js/Extendable.js), extend objects protoypes gracefully with +/- convention see [Extend with Seed.js](Seed/blob/master/doc/Extendable.md)
+*    **Eventable**, (in seed-js/Eventable.js), fire and subscribe event properly, see [Use events](Seed/blob/master/doc/Eventable.md)
+*    **options**, (in seed-js/Seed.js), elegant attributes set. see [Manage attributes with 'options'](Seed/blob/master/doc/options.md)
+*    **sub**, (in seed-js/Seed.js), elegant attributes set [What is sub ?](Seed/blob/master/doc/sub.md)
 
 ## Tests
 
@@ -130,11 +128,11 @@ run tests
 
 Build
 
-    npm run-script minify
+    grunt
 
 ## Documentation
 
-By now documentation is inside the code and uses JSDoc synthax.
+Documentation is inside the code and uses JSDoc synthax.
 
 ## Contribute
 

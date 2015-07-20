@@ -1,4 +1,4 @@
-define("seed-js/tests/Seed", ["vows","assert", "seed-js/Seed"], function(v, assert, S) {
+define(["vows","assert", "seed-js/Seed"], function(v, assert, S) {
   
   return v.describe("Seed").addBatch({
     "2 models" : {

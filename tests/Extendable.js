@@ -1,4 +1,4 @@
-define("seed-js/tests/Extendable", ["vows","assert", "seed-js/Extendable"], function(v, assert, Ex) {
+define(["vows","assert", "seed-js/Extendable"], function(v, assert, Ex) {
   
   return v.describe("Extendable").addBatch({
     "Basic extend" : {
@@ -85,7 +85,7 @@ define("seed-js/tests/Extendable", ["vows","assert", "seed-js/Extendable"], func
             typeName : "number",
             ex0 : "string0",
             ex1 : "string1"
-        }]
+        }];
         //-end TODO
         
         var A = Ex.extend({
@@ -113,7 +113,7 @@ define("seed-js/tests/Extendable", ["vows","assert", "seed-js/Extendable"], func
           }
         });
         
-        return A
+        return A;
       },
       
       "make the right first-level + extend" : function(A) {

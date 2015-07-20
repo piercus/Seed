@@ -1,4 +1,11 @@
-define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex/send"], function(Eventable, tv4) {
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
+
+define("seed-js/Seed", [
+  "seed-js/Eventable", 
+  "seed-js/lib/tv4"
+  ], function(Eventable, tv4) {
   
 
   /**
@@ -57,14 +64,14 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
                 this[key] = this._o[key];
               } else {
                 schemaErrors.push(tv4.error); 
-                schema.default && (this[key] = schema.default);
+                if(schema.default){ this[key] = schema.default; }
               }
             }
           }
         }
       }
       
-      this._o.errCb && (this.errCb = this._o.errCb);
+      if(this._o.errCb){ this.errCb = this._o.errCb; }
       
       if(schemaErrors.length > 0 && this.errCb){
         this.errCb(schemaErrors);        
@@ -97,7 +104,7 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
     */
     
     subParams : function(o) {
-      (o||(o={}));
+      if(!o){o={};}
       o._parent = this;
       return o;
     },
@@ -108,7 +115,7 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
     
     destroy : function() {
       this.detachAll();
-      for(var i = 0; i < this._subs.length; i++) { this._subs[i].destroy() }
+      for(var i = 0; i < this._subs.length; i++) { this._subs[i].destroy(); }
     }
     
   });

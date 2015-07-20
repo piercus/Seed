@@ -1,8 +1,12 @@
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
+
 define("seed-js/Eventable", [
     "seed-js/Extendable",
-    "Array.nocomplex/remove",
-     "Array.nocomplex/map",
-     "String.nocomplex/capitalize"
+    "Array/remove",
+    "Array/map",
+    "String/capitalize"
   ], function(Extendable) {
   
   /**
@@ -116,7 +120,6 @@ define("seed-js/Eventable", [
       // subscriber format validation
       if(subscriber && typeof(subscriber.attach) !== "function") {
         throw new Error("The subscriber should have a attach(event) method");
-        return;
       }
       
       // fn multimorphism handling
@@ -128,7 +131,6 @@ define("seed-js/Eventable", [
       
       if(typeof(f) !== "function") {
         throw new Error("Cannot find the function to subscribe to "+eventName);
-        return;
       }
       
       var _this  = this,
@@ -158,7 +160,7 @@ define("seed-js/Eventable", [
     _rmSubscription : function(eventName, subObj) {
 
       this._events[eventName].remove(subObj);
-      if(this._events[eventName].length == 0) {
+      if(this._events[eventName].length === 0) {
         delete this._events[eventName];
       }
     },

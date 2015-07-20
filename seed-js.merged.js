@@ -1,3 +1,7 @@
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
+
 define("seed-js/Extendable", [],function() {
 
   var clone = function(o) { // clones an object (only lvl 1, see hardClone)
@@ -47,7 +51,7 @@ define("seed-js/Extendable", [],function() {
   */
   
   Extendable["new"] = function(inst, args){
-    (typeof(args[0]) !== "boolean" || args[0] !== false) && inst.init.apply(inst, args);
+    if(typeof(args[0]) !== "boolean" || args[0] !== false){ inst.init.apply(inst, args);}
   };
 
   /**
@@ -189,46 +193,61 @@ define("seed-js/Extendable", [],function() {
   
 });
 
-define( 'Array.nocomplex/remove',[],function() {
+(define("Array/remove", [],function() {
+  
+  Array.prototype.remove = function(v) {
+    for (var i = this.length; i--; ) {
+      if (this[i] === v) this.splice(i, 1);
+    }
+    return this;
+  };
+  
+}));
 
-    Array.prototype.remove = function( v ) {
-        for ( var i = this.length; i--; ) {
-            if ( this[ i ] === v ) this.splice( i, 1 );
-        }
-        return this;
-    };
+(define("Array/map", [],function() {
+  
+  //TOMATURE:debug
+  var debug = this.debug;
+  
+  Array.prototype.map = function(fn, scope) { // returns a new array where elements are fn(this[i])
+  //scope is here for node's map compatibility
+    if (scope) fn = fn.bind(scope);
+    var r = this.slice();
+    if (typeof(fn) === "function") {
+      for (var i = 0, n = r.length; i < n; i++) r[i] = fn(r[i], i);
+    }
+    else {
+      debug.i && console.log('should not happen?');
+      fn = fn.substr(2, fn.length);
+      for (var i = 0, n = r.length; i < n; i++) r[i] = r[i][fn]();
+    }
+    return r;
+  };
+  
+  Array.prototype.as = function(fn) {
+    debug.w&&console.log("[WARNING]: deprecated, use map instead of as");
+    return (Array.prototype.map.call(this, fn));
+  };
+  
+}));
 
-} );
-define( 'Array.nocomplex/map',[],function() {
+define("String/capitalize", [],function() {
+  
+  String.prototype.capitalize = function() {
+    return (this.charAt(0).toUpperCase() + this.slice(1));
+  };
+  
+});
 
-
-    Array.prototype.map = Array.prototype.map || function( fn, scope ) {
-        if ( scope ) fn = fn.bind( scope );
-        var r = this.slice();
-        if ( typeof( fn ) === 'function' ) {
-            for ( var i = 0, n = r.length; i < n; i++ ) r[ i ] = fn( r[ i ], i );
-        } else {
-            fn = fn.substr( 2, fn.length );
-            for ( var i = 0, n = r.length; i < n; i++ ) r[ i ] = r[ i ][ fn ]();
-        }
-        return r;
-    };
-
-
-} );
-define( 'String.nocomplex/capitalize',[],function() {
-
-    String.prototype.capitalize = function() {
-        return ( this[ 0 ].toUpperCase() + this.substr( 1, this.length - 1 ) );
-    };
-
-} );
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
 
 define("seed-js/Eventable", [
     "seed-js/Extendable",
-    "Array.nocomplex/remove",
-     "Array.nocomplex/map",
-     "String.nocomplex/capitalize"
+    "Array/remove",
+    "Array/map",
+    "String/capitalize"
   ], function(Extendable) {
   
   /**
@@ -342,7 +361,6 @@ define("seed-js/Eventable", [
       // subscriber format validation
       if(subscriber && typeof(subscriber.attach) !== "function") {
         throw new Error("The subscriber should have a attach(event) method");
-        return;
       }
       
       // fn multimorphism handling
@@ -354,7 +372,6 @@ define("seed-js/Eventable", [
       
       if(typeof(f) !== "function") {
         throw new Error("Cannot find the function to subscribe to "+eventName);
-        return;
       }
       
       var _this  = this,
@@ -384,7 +401,7 @@ define("seed-js/Eventable", [
     _rmSubscription : function(eventName, subObj) {
 
       this._events[eventName].remove(subObj);
-      if(this._events[eventName].length == 0) {
+      if(this._events[eventName].length === 0) {
         delete this._events[eventName];
       }
     },
@@ -422,6 +439,8 @@ This code is released into the "public domain" by its author.  Anybody may use, 
 
 If you find a bug or make an improvement, it would be courteous to let the author know, but it is not compulsory.
 **/
+
+
 define("seed-js/lib/tv4", [],function(){
   function validateAll(data, schema) {
   	if (schema['$ref'] != undefined) {
@@ -1035,23 +1054,14 @@ define("seed-js/lib/tv4", [],function(){
   return publicApi;
 });
 
-define( 'Array.nocomplex/send',[],function() {
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
 
-    Array.prototype.send = function( method ) {
-        var args = Array.prototype.slice.call( arguments );
-        args.splice( 0, 1 );
-        if ( typeof( method ) === 'string' ) {
-            for ( var i = -1, n = this.length; ++i < n; ) {
-                if ( this[ i ] )
-                    this[ i ][ method ].apply( this[ i ], args );
-            }
-        } else
-            for ( var i = -1, n = this.length; ++i < n; ) method.apply( {}, [ this[ i ] ].concat( args ) );
-        return this;
-    };
-
-} );
-define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex/send"], function(Eventable, tv4) {
+define("seed-js/Seed", [
+  "seed-js/Eventable", 
+  "seed-js/lib/tv4"
+  ], function(Eventable, tv4) {
   
 
   /**
@@ -1110,14 +1120,14 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
                 this[key] = this._o[key];
               } else {
                 schemaErrors.push(tv4.error); 
-                schema.default && (this[key] = schema.default);
+                if(schema.default){ this[key] = schema.default; }
               }
             }
           }
         }
       }
       
-      this._o.errCb && (this.errCb = this._o.errCb);
+      if(this._o.errCb){ this.errCb = this._o.errCb; }
       
       if(schemaErrors.length > 0 && this.errCb){
         this.errCb(schemaErrors);        
@@ -1150,7 +1160,7 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
     */
     
     subParams : function(o) {
-      (o||(o={}));
+      if(!o){o={};}
       o._parent = this;
       return o;
     },
@@ -1161,7 +1171,7 @@ define("seed-js/Seed", ["seed-js/Eventable", "seed-js/lib/tv4", "Array.nocomplex
     
     destroy : function() {
       this.detachAll();
-      for(var i = 0; i < this._subs.length; i++) { this._subs[i].destroy() }
+      for(var i = 0; i < this._subs.length; i++) { this._subs[i].destroy(); }
     }
     
   });

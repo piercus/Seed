@@ -2,18 +2,22 @@
   "name": "seed-js",
   "version": "0.0.5",
   "description": "Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.",
-  "main": "Seed.js",
+  "main": "main.js",
   "directories": {
     "test": "tests"
   },
   "scripts": {
-    "test": "node tests/run.js",
-    "minify" : "node node_modules/requirejs/bin/r.js -o scripts/config.min.js & node node_modules/requirejs/bin/r.js -o scripts/config.merge.js"
+    "test": "grunt test",
+    "build": "grunt build"
   },
   "dependencies": {
-    "string-nocomplex": "git://github.com/piercus/String.nocomplex.git",
-    "array-nocomplex": "git://github.com/piercus/Array.nocomplex.git",
-    "bower" : "1.3.12",  
+    "Array": "git://github.com/piercus/String.git",
+    "String": "git://github.com/piercus/Array.git",
+    "amdefine": "^1.0.0",
+    "bower": "1.3.12",
+    "grunt": "^0.4.5",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-requirejs": "^0.4.4",
     "requirejs": "~2.1.10"
   },
   "devDependencies": {

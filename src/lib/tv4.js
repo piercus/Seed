@@ -6,6 +6,10 @@ This code is released into the "public domain" by its author.  Anybody may use, 
 
 If you find a bug or make an improvement, it would be courteous to let the author know, but it is not compulsory.
 **/
+if (typeof define !== 'function') {
+    var define = require('amdefine')(module);
+}
+
 define("seed-js/lib/tv4", function(){
   function validateAll(data, schema) {
   	if (schema['$ref'] != undefined) {

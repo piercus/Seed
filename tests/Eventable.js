@@ -1,4 +1,4 @@
-define("seed-js/tests/Eventable", ["vows","assert", "seed-js/Eventable"], function(v, assert, Ev) {
+define(["vows","assert", "seed-js/Eventable"], function(v, assert, Ev) {
   
   return v.describe("Eventable").addBatch({
     "Basic publisher/subscriber" : {

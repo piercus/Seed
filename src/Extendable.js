@@ -1,3 +1,7 @@
+if (typeof define !== "function") {
+    var define = require("amdefine")(module);
+}
+
 define("seed-js/Extendable", function() {
 
   var clone = function(o) { // clones an object (only lvl 1, see hardClone)
@@ -47,7 +51,7 @@ define("seed-js/Extendable", function() {
   */
   
   Extendable["new"] = function(inst, args){
-    (typeof(args[0]) !== "boolean" || args[0] !== false) && inst.init.apply(inst, args);
+    if(typeof(args[0]) !== "boolean" || args[0] !== false){ inst.init.apply(inst, args);}
   };
 
   /**
