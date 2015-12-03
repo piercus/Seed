@@ -1,6 +1,6 @@
 {
   "name": "seed-js",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "Elegant inheritance, attributes and events, both for client-side and server-side JavaScript.",
   "main": "main.js",
   "directories": {
@@ -11,8 +11,8 @@
     "build": "grunt build"
   },
   "dependencies": {
-    "Array": "git://github.com/piercus/String.git",
-    "String": "git://github.com/piercus/Array.git",
+    "Array": "git://github.com/piercus/Array.git",
+    "String": "git://github.com/piercus/String.git",
     "amdefine": "^1.0.0",
     "bower": "1.3.12",
     "grunt": "^0.4.5",
