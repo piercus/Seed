@@ -1,4 +1,4 @@
-require("tasks/test.js");
+require("./tasks/test.js");
 
 module.exports = function(grunt) {
 
@@ -7,10 +7,10 @@ module.exports = function(grunt) {
       jshint: {
         owned: {
           files : { src : ["src/*.js", "Gruntfile.js", "config.requirejs.js", "tests/*.js", "main.js"]},
-          options : { 
-            sub : true, 
-            camelcase : true, 
-            forin : true, 
+          options : {
+            sub : true,
+            camelcase : true,
+            forin : true,
             quotmark : "double"
           }
         },
@@ -20,24 +20,24 @@ module.exports = function(grunt) {
           compile : {
             options : {
               mainConfigFile: "config.requirejs.js",
-              out: "seed-js.merged.js",  
-              name: "seed-js/Seed",   
-              optimize: "none"      
+              out: "seed-js.merged.js",
+              name: "seed-js/Seed",
+              optimize: "none"
             }
           },
           min:{
             options : {
               mainConfigFile: "./config.requirejs.js",
-              out: "seed-js.min.js",  
-              name: "seed-js/Seed"          
+              out: "seed-js.min.js",
+              name: "seed-js/Seed"
             }
           },
           standalone : {
             options : {
               mainConfigFile: "config.requirejs.js",
               include: ["./node_modules/requirejs/require.js"],
-              out: "seed-js.standalone.js",  
-              name: "seed-js/Seed",   
+              out: "seed-js.standalone.js",
+              name: "seed-js/Seed",
               wrap: {
                   start: "var Seed;(function() {",
                   end: "Seed = require(\"seed-js/Seed\");}());"
@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 
   // Default task(s).
   grunt.registerTask("default", [
-    "jshint:owned", 
+    "jshint:owned",
     "test",
     "requirejs:compile"
     ]);

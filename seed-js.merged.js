@@ -1,6 +1,4 @@
-if (typeof define !== "function") {
-    var define = require("amdefine")(module);
-}
+
 
 define("seed-js/Extendable", [],function() {
 
@@ -205,28 +203,19 @@ define("seed-js/Extendable", [],function() {
 }));
 
 (define("Array/map", [],function() {
-  
-  //TOMATURE:debug
-  var debug = this.debug;
-  
+
   Array.prototype.map = function(fn, scope) { // returns a new array where elements are fn(this[i])
   //scope is here for node's map compatibility
-    if (scope) fn = fn.bind(scope);
-    var r = this.slice();
+    if (scope){ fn = fn.bind(scope);}
+    var r = this.slice(),i,n;
     if (typeof(fn) === "function") {
-      for (var i = 0, n = r.length; i < n; i++) r[i] = fn(r[i], i);
+      for (i = 0, n = r.length; i < n; i++){ r[i] = fn(r[i], i);}
     }
     else {
-      debug.i && console.log('should not happen?');
       fn = fn.substr(2, fn.length);
-      for (var i = 0, n = r.length; i < n; i++) r[i] = r[i][fn]();
+      for (i = 0, n = r.length; i < n; i++){ r[i] = r[i][fn]();}
     }
     return r;
-  };
-  
-  Array.prototype.as = function(fn) {
-    debug.w&&console.log("[WARNING]: deprecated, use map instead of as");
-    return (Array.prototype.map.call(this, fn));
   };
   
 }));
@@ -239,9 +228,7 @@ define("String/capitalize", [],function() {
   
 });
 
-if (typeof define !== "function") {
-    var define = require("amdefine")(module);
-}
+
 
 define("seed-js/Eventable", [
     "seed-js/Extendable",
@@ -1054,9 +1041,7 @@ define("seed-js/lib/tv4", [],function(){
   return publicApi;
 });
 
-if (typeof define !== "function") {
-    var define = require("amdefine")(module);
-}
+
 
 define("seed-js/Seed", [
   "seed-js/Eventable", 
