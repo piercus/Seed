@@ -12,10 +12,10 @@
   },
   "dependencies": {
     "Array": "git://github.com/piercus/Array.git",
-    "String": "git://github.com/piercus/String.git"
+    "String": "git://github.com/piercus/String.git",
+    "requirejs": "~2.1.10"
   },
   "devDependencies": {
-    "requirejs": "~2.1.10",
     "vows": "~0.7.0",
     "amdefine": "^1.0.0",
     "grunt": "^0.4.5",
